@@ -16,9 +16,9 @@ function moviePicker() {
 //if not, reveal elsewhere and call on the strikeCounter function
 function letterChecker() {
 	var letterPress = ($('#letter').val()).toUpperCase();
-	// console.log(letterPress);
-	// console.log(movieTitle.indexOf(letterPress));
-	if (movieTitle.indexOf(letterPress) != -1) {
+	var letterIndex = movieTitle.indexOf(letterPress);
+	wordDisplayer(letterIndex, letterPress);
+	if (letterIndex != -1) {
 		alert("Correct, way to get ahead of the game!");
 	}
 	else {
@@ -27,16 +27,16 @@ function letterChecker() {
 		strikeCounter();
 	}
 }
+	
 
 //div generator for movie title
-function wordDisplayer() {
-	$('.game-word').append('<span class="answerLetter hidden">D</span>');
-	$('#letter').keypress(function(event) {
-		var keycode = (event.keyCode ? event.keyCode : event.which);
-		if (keycode == '13') {
-			letterChecker();
-		}
-	})
+function wordDisplayer(letterIndex, letterPress) {
+	var str = ($('#finalWord').text());
+	var newLine = str.replace(str[letterIndex], letterPress)
+	console.log(letterIndex);
+	$('#finalWord').text(newLine);
+
+
 }
 
 // //Reveals letter on the line if correct
@@ -80,3 +80,4 @@ function strikeCounter(totalGuesses) {
 // function displayLetter() {
 
 // }
+
