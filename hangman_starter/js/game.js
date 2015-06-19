@@ -11,17 +11,16 @@ function moviePicker() {
 
 
 
-// //Collect and check the guessed letter from submission form
-// //Loop through movie title, if success call on letterRevealer function
-// //if not, reveal elsewhere and call on the strikeCounter function
-// function letterChecker() {
+//Collect and check the guessed letter from submission form
+//Loop through movie title, if success call on letterRevealer function
+//if not, reveal elsewhere and call on the strikeCounter function
+function letterChecker() {
 
-// }
+}
 
 //div generator for movie title
 function wordDisplayer(movieTitle) {
-	$('.game-word').append('<li><div with bottom border><h1>A</h1></div></li>');
-	//console.log('herpderp');
+	$('.game-word').append('daisy');
 }
 
 // //Reveals letter on the line if correct

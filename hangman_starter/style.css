@@ -26,9 +26,14 @@ section.game-play > aside > div:first-child {
 }
 
 div.game-word {
-  letter-spacing: 10px;
-  font-size: 50px;
+  letter-spacing: 1em;
+  font-size: 1em;
   text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  display: inline-block;
 }
 
 input {
