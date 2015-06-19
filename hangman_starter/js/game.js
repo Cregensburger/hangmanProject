@@ -9,17 +9,26 @@ function moviePicker() = placeholder;
 //Loop through movie title, if success call on letterRevealer function
 //if not, reveal elsewhere and call on the strikeCounter function
 function letterChecker() = placeholder;
-
+	//check guessed letter against current list of guesses
+	//if the guessed letter is inside of the title
+		//letterRevealer();
+		//put guessed letter into to guessed letter div at top of page
+	//else 
+		//put guessed letter into to guessed letter div at top of page
 
 
 //Reveals letter on the line if correct
 function letterRevealer() = placeholder;
+	//toggle the hidden class on the letter on the game page
+
 
 	//Called on whenever letterRevealer is sucessfully executed
 	//Check to see if all letters have been revealed
 	//if so, declare winner
 	function winChecker() = placeholder;
-
+	//
+	//if hasClass('hidden') == false
+		//player wins
 
 
 
@@ -42,3 +51,4 @@ function strikeCounter() = placeholder;
 //show all letters that have been guessed
 //in the form provided
 function displayLetter() = placeholder;
+	
