@@ -34,6 +34,7 @@ function wordDisplayer(letterIndex, letterPress) {
 	var str = ($('#finalWord').text());
 	var newLine = str.replace(str[letterIndex], letterPress)
 	console.log(letterIndex);
+	console.log(letterPress);
 	$('#finalWord').text(newLine);
 
 
