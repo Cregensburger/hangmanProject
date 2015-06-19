@@ -1,6 +1,6 @@
 var movieArray = ["Aladdin", "Gaslight"];
 var movieTitle = "FARGO";
-
+var totalGuesses = 8;
 
 //Call on a random movie from array
 function moviePicker() {
@@ -15,26 +15,34 @@ function moviePicker() {
 //Loop through movie title, if success call on letterRevealer function
 //if not, reveal elsewhere and call on the strikeCounter function
 function letterChecker() {
-
+	var letterPress = ($('#letter').val()).toUpperCase();
+	// console.log(letterPress);
+	// console.log(movieTitle.indexOf(letterPress));
+	if (movieTitle.indexOf(letterPress) != -1) {
+		alert("Correct, way to get ahead of the game!");
+	}
+	else {
+		alert("Nope, guess again.");
+		totalGuesses -= 1;
+		strikeCounter();
+	}
 }
 
 //div generator for movie title
-function wordDisplayer(movieTitle) {
+function wordDisplayer() {
 	$('.game-word').append('<span class="answerLetter hidden">D</span>');
 	$('#letter').keypress(function(event) {
 		var keycode = (event.keyCode ? event.keyCode : event.which);
 		if (keycode == '13') {
-			$('.answerLetter').toggleClass('hidden');
+			letterChecker();
 		}
-		
-		
 	})
-	
-
 }
 
 // //Reveals letter on the line if correct
 // function letterRevealer(movieTitle) {
+
+//}
 
 // 	//Called on whenever letterRevealer is sucessfully executed
 // 	//Check to see if all letters have been revealed
@@ -46,12 +54,13 @@ function wordDisplayer(movieTitle) {
 
 
 
-// //7 strikes per game, one strike expended per letter.
-// //In the case where there are repeat letters...
-// //all are revealed, no need for repeat guessing.
-// function strikeCounter() {
-
-// }
+//7 strikes per game, one strike expended per letter.
+//Every time user is wrong in a guess, add a strike
+function strikeCounter(totalGuesses) {
+	if (totalGuesses === 0) {
+		alert("You've been hung out to dry!");
+	}
+}
 
 // 	//Called on whenever strikeCounter is successfully executed
 // 	//Check to see how many strikes left out of seven
