@@ -20,7 +20,17 @@ function letterChecker() {
 
 //div generator for movie title
 function wordDisplayer(movieTitle) {
-	$('.game-word').append('daisy');
+	$('.game-word').append('<span class="answerLetter hidden">D</span>');
+	$('#letter').keypress(function(event) {
+		var keycode = (event.keyCode ? event.keyCode : event.which);
+		if (keycode == '13') {
+			$('.answerLetter').toggleClass('hidden');
+		}
+		
+		
+	})
+	
+
 }
 
 // //Reveals letter on the line if correct
