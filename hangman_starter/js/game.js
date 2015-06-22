@@ -1,11 +1,22 @@
-var movieArray = ["Aladdin", "Gaslight"];
-var movieTitle = "FARGO";
+var movieArray = ["FARGO", "CHUCKY", "", "", "RAY", "ALIENS", "ARGO", "CLUE", "LABYRINTH", "SCREAM", "MISERY", "DAVE"];
+var movieTitle = "CHUCKY";
 var totalGuesses = 8;
 
+function newGame()  {
+	moviePicker(movieArray);
+
+}
+
 //Call on a random movie from array
-function moviePicker() {
-	var randomNumber = [Math.floor(Math.random()*moviePicker.length)];
+function moviePicker(movieArray) {
+	var randomNumber = [Math.floor(Math.random()*movieArray.length)];
 	movieTitle = movieArray[randomNumber];
+	var hiddenWord = [];
+	for (var i = 0; i < movieTitle.length; i++) {
+		hiddenWord.push("_");
+	}
+	$('#finalWord').text(hiddenWord.join(""));
+	console.log(movieTitle + " " + hiddenWord );
 	return movieTitle;
 }
 
@@ -14,18 +25,21 @@ function moviePicker() {
 //Collect and check the guessed letter from submission form
 //Loop through movie title, if success call on letterRevealer function
 //if not, reveal elsewhere and call on the strikeCounter function
-function letterChecker() {
+function letterChecker(movieTitle) {
 	var letterPress = ($('#letter').val()).toUpperCase();
 	var letterIndex = movieTitle.indexOf(letterPress);
 	wordDisplayer(letterIndex, letterPress);
-	if (letterIndex != -1) {
-		alert("Correct, way to get ahead of the game!");
-	}
-	else {
+	if (letterIndex == -1) {
 		alert("Nope, guess again.");
 		totalGuesses -= 1;
-		strikeCounter();
+		strikeCounter(totalGuesses);
+		console.log(totalGuesses);
 	}
+	// else {
+	// 	alert("Nope, guess again.");
+	// 	totalGuesses -= 1;
+	// 	strikeCounter();
+	// }
 }
 	
 
@@ -33,7 +47,6 @@ function letterChecker() {
 function wordDisplayer(letterIndex, letterPress) {
 	var str = ($('#finalWord').text());
 	var newLine = str.replace(str[letterIndex], letterPress)
-	console.log(letterIndex);
 	$('#finalWord').text(newLine);
 
 
@@ -59,6 +72,7 @@ function wordDisplayer(letterIndex, letterPress) {
 function strikeCounter(totalGuesses) {
 	if (totalGuesses === 0) {
 		alert("You've been hung out to dry!");
+		newGame();
 	}
 }
 
