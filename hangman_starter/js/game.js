@@ -1,4 +1,4 @@
-var movieArray = ["FARGO", "RAY", "ALIENS", "ARGO", "CLUE", "LABYRINTH", "SCREAM", "MISERY", "DAVE"];
+var movieArray = ["FARGO", "CHUCKY", "", "", "RAY", "ALIENS", "ARGO", "CLUE", "LABYRINTH", "SCREAM", "MISERY", "DAVE"];
 var movieTitle = "CHUCKY";
 var totalGuesses = 8;
 
@@ -32,7 +32,8 @@ function letterChecker(movieTitle) {
 	if (letterIndex == -1) {
 		alert("Nope, guess again.");
 		totalGuesses -= 1;
-		strikeCounter();
+		strikeCounter(totalGuesses);
+		console.log(totalGuesses);
 	}
 	// else {
 	// 	alert("Nope, guess again.");
@@ -46,8 +47,6 @@ function letterChecker(movieTitle) {
 function wordDisplayer(letterIndex, letterPress) {
 	var str = ($('#finalWord').text());
 	var newLine = str.replace(str[letterIndex], letterPress)
-	console.log(letterIndex);
-	console.log(letterPress);
 	$('#finalWord').text(newLine);
 
 
@@ -73,6 +72,7 @@ function wordDisplayer(letterIndex, letterPress) {
 function strikeCounter(totalGuesses) {
 	if (totalGuesses === 0) {
 		alert("You've been hung out to dry!");
+		newGame();
 	}
 }
 
