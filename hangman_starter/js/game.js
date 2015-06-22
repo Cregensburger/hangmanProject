@@ -1,22 +1,22 @@
 var movieArray = ["FARGO", "RAY", "ALIENS", "ARGO", "CLUE", "LABYRINTH", "SCREAM", "MISERY", "DAVE"];
-//var movieTitle = "FARGO";
+var movieTitle = "CHUCKY";
 var totalGuesses = 8;
 
 function newGame()  {
 	moviePicker(movieArray);
-	
 
 }
 
 //Call on a random movie from array
 function moviePicker(movieArray) {
-	var randomNumber = [Math.floor(Math.random()*moviePicker.length)];
+	var randomNumber = [Math.floor(Math.random()*movieArray.length)];
 	movieTitle = movieArray[randomNumber];
 	var hiddenWord = [];
 	for (var i = 0; i < movieTitle.length; i++) {
 		hiddenWord.push("_");
 	}
 	$('#finalWord').text(hiddenWord.join(""));
+	console.log(movieTitle + " " + hiddenWord );
 	return movieTitle;
 }
 
@@ -29,14 +29,16 @@ function letterChecker(movieTitle) {
 	var letterPress = ($('#letter').val()).toUpperCase();
 	var letterIndex = movieTitle.indexOf(letterPress);
 	wordDisplayer(letterIndex, letterPress);
-	if (letterIndex != -1) {
-		alert("Correct, way to get ahead of the game!");
-	}
-	else {
+	if (letterIndex == -1) {
 		alert("Nope, guess again.");
 		totalGuesses -= 1;
 		strikeCounter();
 	}
+	// else {
+	// 	alert("Nope, guess again.");
+	// 	totalGuesses -= 1;
+	// 	strikeCounter();
+	// }
 }
 	
 

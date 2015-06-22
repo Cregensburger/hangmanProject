@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="style.css">
   <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js'></script>
   <script type='text/javascript' src='js/game.js'></script>
+  <script type='text/javascript' src='js/game_view.js'></script>
   
 </head>
 <body>
@@ -32,16 +33,14 @@
 
   <section class="game-controls">
     <button class="button give-up">Give Up</button>
-    <button class="button new-game">New Game</button>
+    <button class="button" id="new-game">New Game</button>
   </section>
   <script>
 
     $(document).ready(function() {
-      $("#letter").keyup(function (e) {
-        if (e.keyCode == 13) {
-            letterChecker();
-        }
-      }); 
+      newGame();
+      listenForNewGame();
+      listenForEnterPress();
     })
   </script>
 </body>
