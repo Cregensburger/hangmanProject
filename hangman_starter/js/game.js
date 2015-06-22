@@ -1,11 +1,22 @@
-var movieArray = ["Aladdin", "Gaslight"];
-var movieTitle = "FARGO";
+var movieArray = ["FARGO", "RAY", "ALIENS", "ARGO", "CLUE", "LABYRINTH", "SCREAM", "MISERY", "DAVE"];
+//var movieTitle = "FARGO";
 var totalGuesses = 8;
 
+function newGame()  {
+	moviePicker(movieArray);
+	
+
+}
+
 //Call on a random movie from array
-function moviePicker() {
+function moviePicker(movieArray) {
 	var randomNumber = [Math.floor(Math.random()*moviePicker.length)];
 	movieTitle = movieArray[randomNumber];
+	var hiddenWord = [];
+	for (var i = 0; i < movieTitle.length; i++) {
+		hiddenWord.push("_");
+	}
+	$('#finalWord').text(hiddenWord.join(""));
 	return movieTitle;
 }
 
@@ -14,7 +25,7 @@ function moviePicker() {
 //Collect and check the guessed letter from submission form
 //Loop through movie title, if success call on letterRevealer function
 //if not, reveal elsewhere and call on the strikeCounter function
-function letterChecker() {
+function letterChecker(movieTitle) {
 	var letterPress = ($('#letter').val()).toUpperCase();
 	var letterIndex = movieTitle.indexOf(letterPress);
 	wordDisplayer(letterIndex, letterPress);
