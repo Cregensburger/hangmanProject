@@ -17,16 +17,26 @@ function newGame()  {
 function moviePicker(movieArray, hiddenWord) {
 	var randomNumber = [Math.floor(Math.random()*movieArray.length)];
 	movieTitle = movieArray[randomNumber];
+	// movieTitle = "FARGO";
+	// var testWord = "LLLLL";
 	
 	for (var i = 0; i < movieTitle.length; i++) {
 		hiddenWord.push("_");
 	}
+	// $('#finalWord').text(testWord);
 	$('#finalWord').text(hiddenWord.join(""));
-	console.log(movieTitle);
 	return movieTitle;
 }
 
-
+// function setCharAt(str, letterIndex, letterPress, newLine)  {
+// 	// if (letterIndex > str.length-1) {
+// 	// 	return str;
+// 	// }
+// 	newLine = str.slice(0, letterIndex) + letterPress + str.slice(letterIndex+1);
+// 	console.log(newLine);
+// 	return newLine;
+	
+// }
 
 //Collect and check the guessed letter from submission form
 //Loop through movie title, if success call on letterRevealer function
@@ -34,9 +44,10 @@ function moviePicker(movieArray, hiddenWord) {
 function letterChecker(movieTitle) {
 	var letterPress = ($('#letter').val()).toUpperCase();
 	var letterIndex = movieTitle.indexOf(letterPress);
-	
+	var str = ($('#finalWord').text());
 	if (letterIndex != -1) {
-		wordDisplayer(letterIndex, letterPress);
+		//setCharAt(str, letterIndex, letterPress, newLine);
+		wordDisplayer(letterIndex, letterPress, str);
 	}
 	else {
 		alert("Nope, guess again.");
@@ -49,19 +60,9 @@ function letterChecker(movieTitle) {
 	
 
 //div generator for movie title
-function wordDisplayer(letterIndex, letterPress) {
-	var str = ($('#finalWord').text());
-	//var strArray = str.split("");
-	var strChar = str[letterIndex];
-	var newLine = str.replace(str[letterIndex], letterPress);
+function wordDisplayer(letterIndex, letterPress, str) {
+	var newLine = str.slice(0, letterIndex) + letterPress + str.slice(letterIndex+1);	
 	$('#finalWord').text(newLine);
-	console.log(str);
-	console.log(newLine);
-	console.log(strChar);
-
-
-
-
 }
 
 // 	//Called on whenever letterRevealer is sucessfully executed
@@ -83,22 +84,15 @@ function strikeCounter(totalGuesses) {
 	}
 }
 
-// 	//Called on whenever strikeCounter is successfully executed
-// 	//Check to see how many strikes left out of seven
-// 	//if >= 7, execute function loserChecker
-// 	function loserChecker() {
-
-// 	}
 
 
 
 
 
+//Regardless if it is correct or not, 
+//show all letters that have been guessed
+//in the form provided
+function displayLetter() {
 
-// //Regardless if it is correct or not, 
-// //show all letters that have been guessed
-// //in the form provided
-// function displayLetter() {
-
-// }
+}
 
