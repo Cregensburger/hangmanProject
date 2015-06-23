@@ -36,9 +36,11 @@ function letterChecker(movieTitle) {
 	var str = ($('#finalWord').text());
 	if (letterIndex != -1) {
 		wordDisplayer(letterIndex, letterPress, str);
+		lettersGuessed(letterPress);
 	}
 	else {
 		alert("Nope, guess again.");
+		lettersGuessed(letterPress);
 		totalGuesses -= 1;
 		$('.guesses-left').text(String(totalGuesses));
 		strikeCounter(totalGuesses);
@@ -51,7 +53,6 @@ function letterChecker(movieTitle) {
 function wordDisplayer(letterIndex, letterPress, str) {
 	var newLine = str.slice(0, letterIndex) + letterPress + str.slice(letterIndex+1);	
 	$('#finalWord').text(newLine);
-	$('.guessed-letters').append(letterPress);
 }
 
 // 	//Called on whenever letterRevealer is sucessfully executed
@@ -61,7 +62,9 @@ function wordDisplayer(letterIndex, letterPress, str) {
 
 // 	}
 
-
+function lettersGuessed(letterPress)  {
+	$('.guessed-letters').append(letterPress);
+}
 
 
 //7 strikes per game, one strike expended per wrong letter.
