@@ -1,9 +1,12 @@
 var movieArray = ["FARGO", "CHUCKY", "SHREK", "PSYCHO", "WISHCRAFT", "CARS", "RAY", "ALIENS", "ARGO", "CLUE", "LABYRINTH", "SCREAM", "MISERY", "DAVE"];
 var movieTitle = "CHUCKY";
 var totalGuesses = 8;
+var hiddenWord = [];
 
 function newGame()  {
-	moviePicker(movieArray);
+	hiddenWord = [];
+	totalGuesses = 8;
+	moviePicker(movieArray, hiddenWord);
 	listenForNewGame();
 	listenForGiveUp();
 	listenForEnterPress();
@@ -11,15 +14,15 @@ function newGame()  {
 }
 
 //Call on a random movie from array
-function moviePicker(movieArray) {
+function moviePicker(movieArray, hiddenWord) {
 	var randomNumber = [Math.floor(Math.random()*movieArray.length)];
 	movieTitle = movieArray[randomNumber];
-	var hiddenWord = [];
+	
 	for (var i = 0; i < movieTitle.length; i++) {
 		hiddenWord.push("_");
 	}
 	$('#finalWord').text(hiddenWord.join(""));
-	console.log(movieTitle + " " + hiddenWord );
+	console.log(movieTitle);
 	return movieTitle;
 }
 
@@ -31,34 +34,35 @@ function moviePicker(movieArray) {
 function letterChecker(movieTitle) {
 	var letterPress = ($('#letter').val()).toUpperCase();
 	var letterIndex = movieTitle.indexOf(letterPress);
-	wordDisplayer(letterIndex, letterPress);
-	if (letterIndex == -1) {
+	
+	if (letterIndex != -1) {
+		wordDisplayer(letterIndex, letterPress);
+	}
+	else {
 		alert("Nope, guess again.");
 		totalGuesses -= 1;
+		$('.guesses-left').text(String(totalGuesses));
 		strikeCounter(totalGuesses);
-		console.log(totalGuesses);
 	}
-	// else {
-	// 	alert("Nope, guess again.");
-	// 	totalGuesses -= 1;
-	// 	strikeCounter();
-	// }
+	$("#letter").val("");
 }
 	
 
 //div generator for movie title
 function wordDisplayer(letterIndex, letterPress) {
 	var str = ($('#finalWord').text());
-	var newLine = str.replace(str[letterIndex], letterPress)
+	//var strArray = str.split("");
+	var strChar = str[letterIndex];
+	var newLine = str.replace(str[letterIndex], letterPress);
 	$('#finalWord').text(newLine);
+	console.log(str);
+	console.log(newLine);
+	console.log(strChar);
+
+
 
 
 }
-
-// //Reveals letter on the line if correct
-// function letterRevealer(movieTitle) {
-
-//}
 
 // 	//Called on whenever letterRevealer is sucessfully executed
 // 	//Check to see if all letters have been revealed
@@ -70,8 +74,8 @@ function wordDisplayer(letterIndex, letterPress) {
 
 
 
-//7 strikes per game, one strike expended per letter.
-//Every time user is wrong in a guess, add a strike
+//7 strikes per game, one strike expended per wrong letter.
+//Every time user is wrong in a guess, subtract 1 from remaining guesses
 function strikeCounter(totalGuesses) {
 	if (totalGuesses === 0) {
 		alert("You've been hung out to dry!");
