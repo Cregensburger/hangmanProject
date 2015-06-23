@@ -6,6 +6,12 @@ function listenForNewGame()  {
 	});
 }
 
+function listenForGiveUp()  {
+    $("#give-up").click(function() {
+        $('#finalWord').text(movieTitle);
+    })
+}
+
 function listenForEnterPress()  {
 	$("#letter").keyup(function (e) {
         if (e.keyCode == 13) {

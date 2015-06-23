@@ -1,9 +1,12 @@
-var movieArray = ["FARGO", "CHUCKY", "", "", "RAY", "ALIENS", "ARGO", "CLUE", "LABYRINTH", "SCREAM", "MISERY", "DAVE"];
+var movieArray = ["FARGO", "CHUCKY", "SHREK", "PSYCHO", "WISHCRAFT", "CARS", "RAY", "ALIENS", "ARGO", "CLUE", "LABYRINTH", "SCREAM", "MISERY", "DAVE"];
 var movieTitle = "CHUCKY";
 var totalGuesses = 8;
 
 function newGame()  {
 	moviePicker(movieArray);
+	listenForNewGame();
+	listenForGiveUp();
+	listenForEnterPress();
 
 }
 
