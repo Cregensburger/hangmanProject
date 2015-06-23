@@ -15,14 +15,15 @@ function listenForGiveUp()  {
 function listenForEnterPress()  {
 	$("#letter").keyup(function (e) {
         if (e.keyCode == 13) {
-        	if ($('#letter').val() == "") {
-        		// alert("Guess a letter");
-        	}
-        	else {
-        		letterChecker(movieTitle, hiddenWord);
+        	// if ($('#letter').val() == "") {
+        	// 	// alert("Guess a letter");
+        	// }
+        } 
+        else {
+        	letterChecker(movieTitle);
             		
         	}
             
-        }
+        
     }); 
 }
