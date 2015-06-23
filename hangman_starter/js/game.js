@@ -1,5 +1,4 @@
-var movieArray = ["FARGO", "CHUCKY", "SHREK", "PSYCHO", "WISHCRAFT", "CARS", "RAY", "ALIENS", "ARGO", "CLUE", "LABYRINTH", "SCREAM", "MISERY", "DAVE"];
-var movieTitle = "CHUCKY";
+var movieArray = ["FARGO", "FROZEN", "WANTED", "SPIDERMAN", "THOR", "VERTIGO", "TWINS", "TAKEN", "MILK", "JUNO", "SIGNS", "HITCH", "ZOMBIELAND", "CRASH", "MULAN", "BIG", "ROCKY", "SUPERBAD", "GHOST", "CAPOTE", "TRON", "GLORY", "GREMLINS", "CLERKS", "CHUCKY", "SHREK", "PSYCHO", "WISHCRAFT", "CARS", "RAY", "ALIENS", "ARGO", "CLUE", "LABYRINTH", "SCREAM", "MISERY", "DAVE"];
 var totalGuesses = 8;
 var hiddenWord = [];
 
@@ -28,16 +27,6 @@ function moviePicker(movieArray, hiddenWord) {
 	return movieTitle;
 }
 
-// function setCharAt(str, letterIndex, letterPress, newLine)  {
-// 	// if (letterIndex > str.length-1) {
-// 	// 	return str;
-// 	// }
-// 	newLine = str.slice(0, letterIndex) + letterPress + str.slice(letterIndex+1);
-// 	console.log(newLine);
-// 	return newLine;
-	
-// }
-
 //Collect and check the guessed letter from submission form
 //Loop through movie title, if success call on letterRevealer function
 //if not, reveal elsewhere and call on the strikeCounter function
@@ -46,7 +35,6 @@ function letterChecker(movieTitle) {
 	var letterIndex = movieTitle.indexOf(letterPress);
 	var str = ($('#finalWord').text());
 	if (letterIndex != -1) {
-		//setCharAt(str, letterIndex, letterPress, newLine);
 		wordDisplayer(letterIndex, letterPress, str);
 	}
 	else {
@@ -63,6 +51,7 @@ function letterChecker(movieTitle) {
 function wordDisplayer(letterIndex, letterPress, str) {
 	var newLine = str.slice(0, letterIndex) + letterPress + str.slice(letterIndex+1);	
 	$('#finalWord').text(newLine);
+	$('.guessed-letters').append(letterPress);
 }
 
 // 	//Called on whenever letterRevealer is sucessfully executed
@@ -85,14 +74,4 @@ function strikeCounter(totalGuesses) {
 }
 
 
-
-
-
-
-//Regardless if it is correct or not, 
-//show all letters that have been guessed
-//in the form provided
-function displayLetter() {
-
-}
 
